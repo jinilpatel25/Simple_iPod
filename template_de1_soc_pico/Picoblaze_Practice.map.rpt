@@ -1,0 +1,804 @@
+Analysis & Synthesis report for Picoblaze_Practice
+Fri Feb 26 00:43:57 2021
+Quartus II 64-Bit Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Analysis & Synthesis Summary
+  3. Analysis & Synthesis Settings
+  4. Parallel Compilation
+  5. Analysis & Synthesis Source Files Read
+  6. Analysis & Synthesis Resource Usage Summary
+  7. Analysis & Synthesis Resource Utilization by Entity
+  8. Registers Removed During Synthesis
+  9. Removed Registers Triggering Further Register Optimizations
+ 10. General Register Statistics
+ 11. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 12. Parameter Settings for User Entity Instance: Top-level Entity: |Picoblaze_Practice
+ 13. Parameter Settings for User Entity Instance: picoblaze_template:picoblaze_template_inst
+ 14. Port Connectivity Checks: "picoblaze_template:picoblaze_template_inst|pacoblaze_instruction_memory:pacoblaze_instruction_memory_inst"
+ 15. Port Connectivity Checks: "picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm"
+ 16. Port Connectivity Checks: "picoblaze_template:picoblaze_template_inst"
+ 17. Port Connectivity Checks: "doublesync:syncsw0"
+ 18. Port Connectivity Checks: "doublesync:syncsw1"
+ 19. Port Connectivity Checks: "doublesync:syncsw2"
+ 20. Port Connectivity Checks: "doublesync:syncsw3"
+ 21. Post-Synthesis Netlist Statistics for Top Partition
+ 22. Elapsed Time Per Partition
+ 23. Analysis & Synthesis Messages
+ 24. Analysis & Synthesis Suppressed Messages
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2014 Altera Corporation. All rights reserved.
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
+
+
+
++------------------------------------------------------------------------------+
+; Analysis & Synthesis Summary                                                 ;
++---------------------------------+--------------------------------------------+
+; Analysis & Synthesis Status     ; Successful - Fri Feb 26 00:43:57 2021      ;
+; Quartus II 64-Bit Version       ; 14.1.0 Build 186 12/03/2014 SJ Web Edition ;
+; Revision Name                   ; Picoblaze_Practice                         ;
+; Top-level Entity Name           ; Picoblaze_Practice                         ;
+; Family                          ; Cyclone V                                  ;
+; Logic utilization (in ALMs)     ; N/A                                        ;
+; Total registers                 ; 1078                                       ;
+; Total pins                      ; 149                                        ;
+; Total virtual pins              ; 0                                          ;
+; Total block memory bits         ; 0                                          ;
+; Total DSP Blocks                ; 0                                          ;
+; Total HSSI RX PCSs              ; 0                                          ;
+; Total HSSI PMA RX Deserializers ; 0                                          ;
+; Total HSSI TX PCSs              ; 0                                          ;
+; Total HSSI PMA TX Serializers   ; 0                                          ;
+; Total PLLs                      ; 0                                          ;
+; Total DLLs                      ; 0                                          ;
++---------------------------------+--------------------------------------------+
+
+
++---------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Settings                                                                                             ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Option                                                                          ; Setting            ; Default Value      ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+; Device                                                                          ; 5CSEMA5F31C6       ;                    ;
+; Top-level entity name                                                           ; Picoblaze_Practice ; Picoblaze_Practice ;
+; Family name                                                                     ; Cyclone V          ; Cyclone IV GX      ;
+; Create Debugging Nodes for IP Cores                                             ; On                 ; Off                ;
+; Preserve fewer node names                                                       ; Off                ; On                 ;
+; Verilog Show LMF Mapping Messages                                               ; On                 ;                    ;
+; Verilog Version                                                                 ; SystemVerilog_2005 ; Verilog_2001       ;
+; Extract Verilog State Machines                                                  ; Off                ; On                 ;
+; Extract VHDL State Machines                                                     ; Off                ; On                 ;
+; Iteration limit for non-constant Verilog loops                                  ; 5000               ; 250                ;
+; Power-Up Don't Care                                                             ; Off                ; On                 ;
+; Auto ROM Replacement                                                            ; Off                ; On                 ;
+; Auto RAM Replacement                                                            ; Off                ; On                 ;
+; Auto Clock Enable Replacement                                                   ; Off                ; On                 ;
+; Synchronization Register Chain Length                                           ; 2                  ; 3                  ;
+; Number of Inverted Registers Reported in Synthesis Report                       ; 1000               ; 100                ;
+; SDC constraint protection                                                       ; On                 ; Off                ;
+; Use smart compilation                                                           ; Off                ; Off                ;
+; Enable parallel Assembler and TimeQuest Timing Analyzer during compilation      ; On                 ; On                 ;
+; Enable compact report table                                                     ; Off                ; Off                ;
+; Restructure Multiplexers                                                        ; Auto               ; Auto               ;
+; MLAB Add Timing Constraints For Mixed-Port Feed-Through Mode Setting Don't Care ; Off                ; Off                ;
+; Disable OpenCore Plus hardware evaluation                                       ; Off                ; Off                ;
+; VHDL Version                                                                    ; VHDL_1993          ; VHDL_1993          ;
+; State Machine Processing                                                        ; Auto               ; Auto               ;
+; Safe State Machine                                                              ; Off                ; Off                ;
+; Ignore Verilog initial constructs                                               ; Off                ; Off                ;
+; Iteration limit for constant Verilog loops                                      ; 5000               ; 5000               ;
+; Add Pass-Through Logic to Inferred RAMs                                         ; On                 ; On                 ;
+; Infer RAMs from Raw Logic                                                       ; On                 ; On                 ;
+; Parallel Synthesis                                                              ; On                 ; On                 ;
+; DSP Block Balancing                                                             ; Auto               ; Auto               ;
+; NOT Gate Push-Back                                                              ; On                 ; On                 ;
+; Remove Redundant Logic Cells                                                    ; Off                ; Off                ;
+; Remove Duplicate Registers                                                      ; On                 ; On                 ;
+; Ignore CARRY Buffers                                                            ; Off                ; Off                ;
+; Ignore CASCADE Buffers                                                          ; Off                ; Off                ;
+; Ignore GLOBAL Buffers                                                           ; Off                ; Off                ;
+; Ignore ROW GLOBAL Buffers                                                       ; Off                ; Off                ;
+; Ignore LCELL Buffers                                                            ; Off                ; Off                ;
+; Ignore SOFT Buffers                                                             ; On                 ; On                 ;
+; Limit AHDL Integers to 32 Bits                                                  ; Off                ; Off                ;
+; Optimization Technique                                                          ; Balanced           ; Balanced           ;
+; Carry Chain Length                                                              ; 70                 ; 70                 ;
+; Auto Carry Chains                                                               ; On                 ; On                 ;
+; Auto Open-Drain Pins                                                            ; On                 ; On                 ;
+; Perform WYSIWYG Primitive Resynthesis                                           ; Off                ; Off                ;
+; Auto DSP Block Replacement                                                      ; On                 ; On                 ;
+; Auto Shift Register Replacement                                                 ; Auto               ; Auto               ;
+; Allow Shift Register Merging across Hierarchies                                 ; Auto               ; Auto               ;
+; Strict RAM Replacement                                                          ; Off                ; Off                ;
+; Allow Synchronous Control Signals                                               ; On                 ; On                 ;
+; Force Use of Synchronous Clear Signals                                          ; Off                ; Off                ;
+; Auto Resource Sharing                                                           ; Off                ; Off                ;
+; Allow Any RAM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any ROM Size For Recognition                                              ; Off                ; Off                ;
+; Allow Any Shift Register Size For Recognition                                   ; Off                ; Off                ;
+; Use LogicLock Constraints during Resource Balancing                             ; On                 ; On                 ;
+; Ignore translate_off and synthesis_off directives                               ; Off                ; Off                ;
+; Timing-Driven Synthesis                                                         ; On                 ; On                 ;
+; Report Parameter Settings                                                       ; On                 ; On                 ;
+; Report Source Assignments                                                       ; On                 ; On                 ;
+; Report Connectivity Checks                                                      ; On                 ; On                 ;
+; Ignore Maximum Fan-Out Assignments                                              ; Off                ; Off                ;
+; PowerPlay Power Optimization During Synthesis                                   ; Normal compilation ; Normal compilation ;
+; HDL message level                                                               ; Level2             ; Level2             ;
+; Suppress Register Optimization Related Messages                                 ; Off                ; Off                ;
+; Number of Removed Registers Reported in Synthesis Report                        ; 5000               ; 5000               ;
+; Number of Swept Nodes Reported in Synthesis Report                              ; 5000               ; 5000               ;
+; Clock MUX Protection                                                            ; On                 ; On                 ;
+; Auto Gated Clock Conversion                                                     ; Off                ; Off                ;
+; Block Design Naming                                                             ; Auto               ; Auto               ;
+; Synthesis Effort                                                                ; Auto               ; Auto               ;
+; Shift Register Replacement - Allow Asynchronous Clear Signal                    ; On                 ; On                 ;
+; Pre-Mapping Resynthesis Optimization                                            ; Off                ; Off                ;
+; Analysis & Synthesis Message Level                                              ; Medium             ; Medium             ;
+; Disable Register Merging Across Hierarchies                                     ; Auto               ; Auto               ;
+; Resource Aware Inference For Block RAM                                          ; On                 ; On                 ;
+; Synthesis Seed                                                                  ; 1                  ; 1                  ;
+; Automatic Parallel Synthesis                                                    ; On                 ; On                 ;
+; Partial Reconfiguration Bitstream ID                                            ; Off                ; Off                ;
++---------------------------------------------------------------------------------+--------------------+--------------------+
+
+
++------------------------------------------+
+; Parallel Compilation                     ;
++----------------------------+-------------+
+; Processors                 ; Number      ;
++----------------------------+-------------+
+; Number detected on machine ; 12          ;
+; Maximum allowed            ; 6           ;
+;                            ;             ;
+; Average used               ; 1.00        ;
+; Maximum used               ; 6           ;
+;                            ;             ;
+; Usage by Processor         ; % Time Used ;
+;     Processor 1            ; 100.0%      ;
+;     Processors 2-6         ; < 0.1%      ;
+;     Processors 7-12        ;   0.0%      ;
++----------------------------+-------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                                                                                                                ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type                    ; File Name with Absolute Path                                                                                                                                            ; Library ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+; picoblaze_practice.v             ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/picoblaze_practice.v           ;         ;
+; doublesync.v                     ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/doublesync.v                   ;         ;
+; picoblaze_template.v             ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/picoblaze_template.v           ;         ;
+; pacoblaze_idu.v                  ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/pacoblaze/pacoblaze_idu.v      ;         ;
+; pacoblaze_alu.v                  ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/pacoblaze/pacoblaze_alu.v      ;         ;
+; pacoblaze_stack.v                ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/pacoblaze/pacoblaze_stack.v    ;         ;
+; pacoblaze_register.v             ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/pacoblaze/pacoblaze_register.v ;         ;
+; pacoblaze_scratch.v              ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/pacoblaze/pacoblaze_scratch.v  ;         ;
+; pacoblaze.v                      ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/pacoblaze/pacoblaze.v          ;         ;
+; pacoblaze_instruction_memory.v   ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/pacoblaze_instruction_memory.v ;         ;
+; pracpico.mem                     ; yes             ; Auto-Found Unspecified File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/pracpico.mem                   ;         ;
+; sevensegmentdisplaydecoder.v     ; yes             ; Auto-Found Verilog HDL File  ; C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/sevensegmentdisplaydecoder.v   ;         ;
++----------------------------------+-----------------+------------------------------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+---------+
+
+
++--------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                  ;
++---------------------------------------------+----------------+
+; Resource                                    ; Usage          ;
++---------------------------------------------+----------------+
+; Estimate of Logic utilization (ALMs needed) ; 1146           ;
+;                                             ;                ;
+; Combinational ALUT usage for logic          ; 820            ;
+;     -- 7 input functions                    ; 2              ;
+;     -- 6 input functions                    ; 484            ;
+;     -- 5 input functions                    ; 76             ;
+;     -- 4 input functions                    ; 87             ;
+;     -- <=3 input functions                  ; 171            ;
+;                                             ;                ;
+; Dedicated logic registers                   ; 1078           ;
+;                                             ;                ;
+; I/O pins                                    ; 149            ;
+;                                             ;                ;
+; Total DSP Blocks                            ; 0              ;
+;                                             ;                ;
+; Maximum fan-out node                        ; CLOCK_50~input ;
+; Maximum fan-out                             ; 1078           ;
+; Total fan-out                               ; 8517           ;
+; Average fan-out                             ; 3.75           ;
++---------------------------------------------+----------------+
+
+
++-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Utilization by Entity                                                                                                                                                                                                                                                             ;
++------------------------------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------+--------------+
+; Compilation Hierarchy Node                                             ; LC Combinationals ; LC Registers ; Block Memory Bits ; DSP Blocks ; Pins ; Virtual Pins ; Full Hierarchy Name                                                                                                           ; Library Name ;
++------------------------------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------+--------------+
+; |Picoblaze_Practice                                                    ; 820 (0)           ; 1078 (0)     ; 0                 ; 0          ; 149  ; 0            ; |Picoblaze_Practice                                                                                                           ; work         ;
+;    |SevenSegmentDisplayDecoder:sevenseg0|                              ; 7 (7)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|SevenSegmentDisplayDecoder:sevenseg0                                                                      ; work         ;
+;    |SevenSegmentDisplayDecoder:sevenseg1|                              ; 7 (7)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|SevenSegmentDisplayDecoder:sevenseg1                                                                      ; work         ;
+;    |SevenSegmentDisplayDecoder:sevenseg2|                              ; 7 (7)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|SevenSegmentDisplayDecoder:sevenseg2                                                                      ; work         ;
+;    |SevenSegmentDisplayDecoder:sevenseg3|                              ; 7 (7)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|SevenSegmentDisplayDecoder:sevenseg3                                                                      ; work         ;
+;    |SevenSegmentDisplayDecoder:sevenseg4|                              ; 7 (7)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|SevenSegmentDisplayDecoder:sevenseg4                                                                      ; work         ;
+;    |SevenSegmentDisplayDecoder:sevenseg5|                              ; 7 (7)             ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|SevenSegmentDisplayDecoder:sevenseg5                                                                      ; work         ;
+;    |doublesync:syncsw0|                                                ; 0 (0)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|doublesync:syncsw0                                                                                        ; work         ;
+;    |doublesync:syncsw1|                                                ; 0 (0)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|doublesync:syncsw1                                                                                        ; work         ;
+;    |doublesync:syncsw2|                                                ; 0 (0)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|doublesync:syncsw2                                                                                        ; work         ;
+;    |doublesync:syncsw3|                                                ; 0 (0)             ; 2 (2)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|doublesync:syncsw3                                                                                        ; work         ;
+;    |picoblaze_template:picoblaze_template_inst|                        ; 778 (39)          ; 1070 (83)    ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst                                                                ; work         ;
+;       |pacoblaze3:led_8seg_kcpsm|                                      ; 669 (393)         ; 987 (22)     ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm                                      ; work         ;
+;          |pacoblaze3_alu:alu|                                          ; 40 (40)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_alu:alu                   ; work         ;
+;          |pacoblaze3_register:register|                                ; 56 (56)           ; 128 (128)    ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register         ; work         ;
+;          |pacoblaze3_scratch:scratch|                                  ; 128 (128)         ; 512 (512)    ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch           ; work         ;
+;          |pacoblaze3_stack:stack|                                      ; 52 (52)           ; 325 (325)    ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack               ; work         ;
+;       |pacoblaze_instruction_memory:pacoblaze_instruction_memory_inst| ; 70 (70)           ; 0 (0)        ; 0                 ; 0          ; 0    ; 0            ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze_instruction_memory:pacoblaze_instruction_memory_inst ; work         ;
++------------------------------------------------------------------------+-------------------+--------------+-------------------+------------+------+--------------+-------------------------------------------------------------------------------------------------------------------------------+--------------+
+Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++--------------------------------------------------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                                                             ;
++---------------------------------------------------------------------------------------+----------------------------------------+
+; Register name                                                                         ; Reason for Removal                     ;
++---------------------------------------------------------------------------------------+----------------------------------------+
+; picoblaze_template:picoblaze_template_inst|in_port[4..7]                              ; Stuck at GND due to stuck port data_in ;
+; picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|reset_latch[0,1] ; Stuck at GND due to stuck port data_in ;
+; Total Number of Removed Registers = 6                                                 ;                                        ;
++---------------------------------------------------------------------------------------+----------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Removed Registers Triggering Further Register Optimizations                                                                                                                                           ;
++-------------------------------------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; Register name                                                                       ; Reason for Removal        ; Registers Removed due to This Register                                              ;
++-------------------------------------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+; picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|reset_latch[0] ; Stuck at GND              ; picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|reset_latch[1] ;
+;                                                                                     ; due to stuck port data_in ;                                                                                     ;
++-------------------------------------------------------------------------------------+---------------------------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------+
+; General Register Statistics                          ;
++----------------------------------------------+-------+
+; Statistic                                    ; Value ;
++----------------------------------------------+-------+
+; Total registers                              ; 1078  ;
+; Number of registers using Synchronous Clear  ; 27    ;
+; Number of registers using Synchronous Load   ; 1004  ;
+; Number of registers using Asynchronous Clear ; 1     ;
+; Number of registers using Asynchronous Load  ; 0     ;
+; Number of registers using Clock Enable       ; 0     ;
+; Number of registers using Preset             ; 0     ;
++----------------------------------------------+-------+
+
+
++------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                                                                                                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[15][6] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[14][5] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[13][6] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[12][6] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[11][6] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[10][6] ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[9][7]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[8][6]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[7][0]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[6][0]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[5][0]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[4][2]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[3][2]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[2][1]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[1][2]  ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|dpr[0][2]  ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|zero_saved                              ;
+; 3:1                ; 4 bits    ; 8 LEs         ; 8 LEs                ; 0 LEs                  ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|scratch_write_enable                    ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 20 LEs               ; 0 LEs                  ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|program_counter[9]                      ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[63][4]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[62][3]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[61][0]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[60][6]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[59][4]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[58][5]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[57][3]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[56][1]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[55][0]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[54][1]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[53][6]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[52][4]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[51][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[50][7]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[49][4]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[48][5]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[47][3]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[46][3]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[45][6]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[44][0]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[43][3]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[42][6]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[41][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[40][6]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[39][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[38][1]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[37][5]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[36][0]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[35][3]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[34][0]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[33][3]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[32][6]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[31][5]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[30][4]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[29][0]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[28][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[27][6]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[26][0]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[25][4]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[24][1]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[23][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[22][0]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[21][7]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[20][1]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[19][7]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[18][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[17][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[16][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[15][1]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[14][4]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[13][3]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[12][6]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[11][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[10][2]   ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[9][4]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[8][2]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[7][2]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[6][2]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[5][2]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[4][7]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[3][2]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[2][1]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[1][6]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 0 LEs                ; 16 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch|spr[0][0]    ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[31][3]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[30][7]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[29][3]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[28][0]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[27][7]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[26][5]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[25][2]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[24][2]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[23][8]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[22][4]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[21][4]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[20][6]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[19][6]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[18][7]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[17][5]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[16][3]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[15][7]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[14][4]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[13][6]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[12][4]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[11][3]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[10][2]       ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[9][2]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[8][2]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[7][2]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[6][4]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[5][3]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[4][3]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[3][3]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[2][3]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[1][3]        ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 0 LEs                ; 20 LEs                 ; Yes        ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack|spr[0][8]        ;
+; 16:1               ; 8 bits    ; 80 LEs        ; 80 LEs               ; 0 LEs                  ; No         ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register|Mux1       ;
+; 17:1               ; 8 bits    ; 88 LEs        ; 88 LEs               ; 0 LEs                  ; No         ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|port_id[6]                              ;
+; 33:1               ; 8 bits    ; 176 LEs       ; 32 LEs               ; 144 LEs                ; No         ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_alu:alu|Selector3            ;
+; 66:1               ; 4 bits    ; 176 LEs       ; 176 LEs              ; 0 LEs                  ; No         ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|register_x_data_in[7]                   ;
+; 66:1               ; 4 bits    ; 176 LEs       ; 176 LEs              ; 0 LEs                  ; No         ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|register_x_data_in[0]                   ;
+; 35:1               ; 10 bits   ; 230 LEs       ; 230 LEs              ; 0 LEs                  ; No         ; |Picoblaze_Practice|picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|program_counter_source[1]               ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: Top-level Entity: |Picoblaze_Practice ;
++------------------------+----------+------------------------------------------------+
+; Parameter Name         ; Value    ; Type                                           ;
++------------------------+----------+------------------------------------------------+
+; character_0            ; 00110000 ; Unsigned Binary                                ;
+; character_1            ; 00110001 ; Unsigned Binary                                ;
+; character_2            ; 00110010 ; Unsigned Binary                                ;
+; character_3            ; 00110011 ; Unsigned Binary                                ;
+; character_4            ; 00110100 ; Unsigned Binary                                ;
+; character_5            ; 00110101 ; Unsigned Binary                                ;
+; character_6            ; 00110110 ; Unsigned Binary                                ;
+; character_7            ; 00110111 ; Unsigned Binary                                ;
+; character_8            ; 00111000 ; Unsigned Binary                                ;
+; character_9            ; 00111001 ; Unsigned Binary                                ;
+; character_A            ; 01000001 ; Unsigned Binary                                ;
+; character_B            ; 01000010 ; Unsigned Binary                                ;
+; character_C            ; 01000011 ; Unsigned Binary                                ;
+; character_D            ; 01000100 ; Unsigned Binary                                ;
+; character_E            ; 01000101 ; Unsigned Binary                                ;
+; character_F            ; 01000110 ; Unsigned Binary                                ;
+; character_G            ; 01000111 ; Unsigned Binary                                ;
+; character_H            ; 01001000 ; Unsigned Binary                                ;
+; character_I            ; 01001001 ; Unsigned Binary                                ;
+; character_J            ; 01001010 ; Unsigned Binary                                ;
+; character_K            ; 01001011 ; Unsigned Binary                                ;
+; character_L            ; 01001100 ; Unsigned Binary                                ;
+; character_M            ; 01001101 ; Unsigned Binary                                ;
+; character_N            ; 01001110 ; Unsigned Binary                                ;
+; character_O            ; 01001111 ; Unsigned Binary                                ;
+; character_P            ; 01010000 ; Unsigned Binary                                ;
+; character_Q            ; 01010001 ; Unsigned Binary                                ;
+; character_R            ; 01010010 ; Unsigned Binary                                ;
+; character_S            ; 01010011 ; Unsigned Binary                                ;
+; character_T            ; 01010100 ; Unsigned Binary                                ;
+; character_U            ; 01010101 ; Unsigned Binary                                ;
+; character_V            ; 01010110 ; Unsigned Binary                                ;
+; character_W            ; 01010111 ; Unsigned Binary                                ;
+; character_X            ; 01011000 ; Unsigned Binary                                ;
+; character_Y            ; 01011001 ; Unsigned Binary                                ;
+; character_Z            ; 01011010 ; Unsigned Binary                                ;
+; character_lowercase_a  ; 01100001 ; Unsigned Binary                                ;
+; character_lowercase_b  ; 01100010 ; Unsigned Binary                                ;
+; character_lowercase_c  ; 01100011 ; Unsigned Binary                                ;
+; character_lowercase_d  ; 01100100 ; Unsigned Binary                                ;
+; character_lowercase_e  ; 01100101 ; Unsigned Binary                                ;
+; character_lowercase_f  ; 01100110 ; Unsigned Binary                                ;
+; character_lowercase_g  ; 01100111 ; Unsigned Binary                                ;
+; character_lowercase_h  ; 01101000 ; Unsigned Binary                                ;
+; character_lowercase_i  ; 01101001 ; Unsigned Binary                                ;
+; character_lowercase_j  ; 01101010 ; Unsigned Binary                                ;
+; character_lowercase_k  ; 01101011 ; Unsigned Binary                                ;
+; character_lowercase_l  ; 01101100 ; Unsigned Binary                                ;
+; character_lowercase_m  ; 01101101 ; Unsigned Binary                                ;
+; character_lowercase_n  ; 01101110 ; Unsigned Binary                                ;
+; character_lowercase_o  ; 01101111 ; Unsigned Binary                                ;
+; character_lowercase_p  ; 01110000 ; Unsigned Binary                                ;
+; character_lowercase_q  ; 01110001 ; Unsigned Binary                                ;
+; character_lowercase_r  ; 01110010 ; Unsigned Binary                                ;
+; character_lowercase_s  ; 01110011 ; Unsigned Binary                                ;
+; character_lowercase_t  ; 01110100 ; Unsigned Binary                                ;
+; character_lowercase_u  ; 01110101 ; Unsigned Binary                                ;
+; character_lowercase_v  ; 01110110 ; Unsigned Binary                                ;
+; character_lowercase_w  ; 01110111 ; Unsigned Binary                                ;
+; character_lowercase_x  ; 01111000 ; Unsigned Binary                                ;
+; character_lowercase_y  ; 01111001 ; Unsigned Binary                                ;
+; character_lowercase_z  ; 01111010 ; Unsigned Binary                                ;
+; character_colon        ; 00111010 ; Unsigned Binary                                ;
+; character_stop         ; 00101110 ; Unsigned Binary                                ;
+; character_semi_colon   ; 00111011 ; Unsigned Binary                                ;
+; character_minus        ; 00101101 ; Unsigned Binary                                ;
+; character_divide       ; 00101111 ; Unsigned Binary                                ;
+; character_plus         ; 00101011 ; Unsigned Binary                                ;
+; character_comma        ; 00101100 ; Unsigned Binary                                ;
+; character_less_than    ; 00111100 ; Unsigned Binary                                ;
+; character_greater_than ; 00111110 ; Unsigned Binary                                ;
+; character_equals       ; 00111101 ; Unsigned Binary                                ;
+; character_question     ; 00111111 ; Unsigned Binary                                ;
+; character_dollar       ; 00100100 ; Unsigned Binary                                ;
+; character_space        ; 00100000 ; Unsigned Binary                                ;
+; character_exclaim      ; 00100001 ; Unsigned Binary                                ;
++------------------------+----------+------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-----------------------------------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: picoblaze_template:picoblaze_template_inst ;
++----------------+----------+-------------------------------------------------------------+
+; Parameter Name ; Value    ; Type                                                        ;
++----------------+----------+-------------------------------------------------------------+
+; clk_freq_in_hz ; 25000000 ; Signed Integer                                              ;
++----------------+----------+-------------------------------------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
++-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "picoblaze_template:picoblaze_template_inst|pacoblaze_instruction_memory:pacoblaze_instruction_memory_inst"                                                                 ;
++---------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Port    ; Type   ; Severity ; Details                                                                                                                                                                 ;
++---------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; outdata ; Output ; Warning  ; Output or bidir port (18 bits) is smaller than the port expression (20 bits) it drives.  The 2 most-significant bit(s) in the port expression will be connected to GND. ;
++---------+--------+----------+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------+
+; Port Connectivity Checks: "picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm"                        ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; Port          ; Type   ; Severity ; Details                                                                             ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+; port_id[3..0] ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; read_strobe   ; Output ; Info     ; Connected to dangling logic. Logic that only feeds a dangling port will be removed. ;
+; reset         ; Input  ; Info     ; Stuck at GND                                                                        ;
++---------------+--------+----------+-------------------------------------------------------------------------------------+
+
+
++------------------------------------------------------------------------+
+; Port Connectivity Checks: "picoblaze_template:picoblaze_template_inst" ;
++------------------+-------+----------+----------------------------------+
+; Port             ; Type  ; Severity ; Details                          ;
++------------------+-------+----------+----------------------------------+
+; input_data[7..4] ; Input ; Info     ; Stuck at GND                     ;
++------------------+-------+----------+----------------------------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "doublesync:syncsw0" ;
++-------+-------+----------+---------------------+
+; Port  ; Type  ; Severity ; Details             ;
++-------+-------+----------+---------------------+
+; reset ; Input ; Info     ; Stuck at VCC        ;
++-------+-------+----------+---------------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "doublesync:syncsw1" ;
++-------+-------+----------+---------------------+
+; Port  ; Type  ; Severity ; Details             ;
++-------+-------+----------+---------------------+
+; reset ; Input ; Info     ; Stuck at VCC        ;
++-------+-------+----------+---------------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "doublesync:syncsw2" ;
++-------+-------+----------+---------------------+
+; Port  ; Type  ; Severity ; Details             ;
++-------+-------+----------+---------------------+
+; reset ; Input ; Info     ; Stuck at VCC        ;
++-------+-------+----------+---------------------+
+
+
++------------------------------------------------+
+; Port Connectivity Checks: "doublesync:syncsw3" ;
++-------+-------+----------+---------------------+
+; Port  ; Type  ; Severity ; Details             ;
++-------+-------+----------+---------------------+
+; reset ; Input ; Info     ; Stuck at VCC        ;
++-------+-------+----------+---------------------+
+
+
++-----------------------------------------------------+
+; Post-Synthesis Netlist Statistics for Top Partition ;
++-----------------------+-----------------------------+
+; Type                  ; Count                       ;
++-----------------------+-----------------------------+
+; arriav_ff             ; 1078                        ;
+;     CLR               ; 1                           ;
+;     SCLR              ; 27                          ;
+;     SLD               ; 1004                        ;
+;     plain             ; 46                          ;
+; arriav_io_obuf        ; 78                          ;
+; arriav_lcell_comb     ; 827                         ;
+;     arith             ; 37                          ;
+;         1 data inputs ; 27                          ;
+;         4 data inputs ; 10                          ;
+;     extend            ; 2                           ;
+;         7 data inputs ; 2                           ;
+;     normal            ; 779                         ;
+;         0 data inputs ; 1                           ;
+;         1 data inputs ; 7                           ;
+;         2 data inputs ; 95                          ;
+;         3 data inputs ; 40                          ;
+;         4 data inputs ; 76                          ;
+;         5 data inputs ; 76                          ;
+;         6 data inputs ; 484                         ;
+;     shared            ; 9                           ;
+;         0 data inputs ; 1                           ;
+;         3 data inputs ; 7                           ;
+;         4 data inputs ; 1                           ;
+; boundary_port         ; 149                         ;
+;                       ;                             ;
+; Max LUT depth         ; 8.80                        ;
+; Average LUT depth     ; 4.79                        ;
++-----------------------+-----------------------------+
+
+
++-------------------------------+
+; Elapsed Time Per Partition    ;
++----------------+--------------+
+; Partition Name ; Elapsed Time ;
++----------------+--------------+
+; Top            ; 00:00:02     ;
++----------------+--------------+
+
+
++-------------------------------+
+; Analysis & Synthesis Messages ;
++-------------------------------+
+Info: *******************************************************************
+Info: Running Quartus II 64-Bit Analysis & Synthesis
+    Info: Version 14.1.0 Build 186 12/03/2014 SJ Web Edition
+    Info: Processing started: Fri Feb 26 00:43:45 2021
+Info: Command: quartus_map --read_settings_files=on --write_settings_files=off Picoblaze_Practice -c Picoblaze_Practice
+Warning (125092): Tcl Script File flash/flash.qip not found
+    Info (125063): set_global_assignment -name QIP_FILE flash/flash.qip
+Info (11104): Parallel Compilation has detected 12 hyper-threaded processors. However, the extra hyper-threaded processors will not be used by default. Parallel Compilation will use 6 of the 6 physical processors detected instead.
+Warning (12125): Using design file picoblaze_practice.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: Picoblaze_Practice
+Info (12127): Elaborating entity "Picoblaze_Practice" for the top level hierarchy
+Warning (10034): Output port "LEDR[1..0]" at picoblaze_practice.v(55) has no driver
+Warning (10034): Output port "AUD_DACDAT" at picoblaze_practice.v(77) has no driver
+Warning (10034): Output port "AUD_XCK" at picoblaze_practice.v(79) has no driver
+Warning (10034): Output port "FPGA_I2C_SCLK" at picoblaze_practice.v(82) has no driver
+Warning (12125): Using design file doublesync.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: doublesync
+Info (12128): Elaborating entity "doublesync" for hierarchy "doublesync:syncsw3"
+Warning (12125): Using design file picoblaze_template.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: picoblaze_template
+Info (12128): Elaborating entity "picoblaze_template" for hierarchy "picoblaze_template:picoblaze_template_inst"
+Warning (10230): Verilog HDL assignment warning at picoblaze_template.v(99): truncated value with size 32 to match size of target (27)
+Warning (10274): Verilog HDL macro warning at pacoblaze.v(56): overriding existing definition for macro "operation_is", which was defined in "pacoblaze_alu.v", line 44
+Warning (12125): Using design file pacoblaze/pacoblaze3.v, which is not specified as a design file for the current project, but contains definitions for 6 design units and 6 entities in project
+    Info (12023): Found entity 1: pacoblaze3_idu
+    Info (12023): Found entity 2: pacoblaze3_alu
+    Info (12023): Found entity 3: pacoblaze3_stack
+    Info (12023): Found entity 4: pacoblaze3_register
+    Info (12023): Found entity 5: pacoblaze3_scratch
+    Info (12023): Found entity 6: pacoblaze3
+Info (12128): Elaborating entity "pacoblaze3" for hierarchy "picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm"
+Warning (10036): Verilog HDL or VHDL warning at pacoblaze.v(195): object "is_alu" assigned a value but never read
+Warning (10230): Verilog HDL assignment warning at pacoblaze.v(251): truncated value with size 32 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at pacoblaze.v(268): truncated value with size 32 to match size of target (10)
+Warning (10230): Verilog HDL assignment warning at pacoblaze.v(274): truncated value with size 32 to match size of target (10)
+Warning (10766): Verilog HDL Synthesis Attribute warning at pacoblaze.v(322): ignoring full_case attribute on case statement with explicit default case item
+Info (12128): Elaborating entity "pacoblaze3_idu" for hierarchy "picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_idu:idu"
+Warning (10208): Verilog HDL Case Statement warning at pacoblaze_idu.v(169): honored full_case synthesis attribute - differences between design synthesis and simulation may occur
+Info (12128): Elaborating entity "pacoblaze3_alu" for hierarchy "picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_alu:alu"
+Warning (10230): Verilog HDL assignment warning at pacoblaze_alu.v(96): truncated value with size 32 to match size of target (1)
+Warning (10766): Verilog HDL Synthesis Attribute warning at pacoblaze_alu.v(180): ignoring full_case attribute on case statement with explicit default case item
+Info (12128): Elaborating entity "pacoblaze3_register" for hierarchy "picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_register:register"
+Info (12128): Elaborating entity "pacoblaze3_stack" for hierarchy "picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_stack:stack"
+Warning (10230): Verilog HDL assignment warning at pacoblaze_stack.v(51): truncated value with size 32 to match size of target (5)
+Info (12128): Elaborating entity "pacoblaze3_scratch" for hierarchy "picoblaze_template:picoblaze_template_inst|pacoblaze3:led_8seg_kcpsm|pacoblaze3_scratch:scratch"
+Warning (12125): Using design file pacoblaze_instruction_memory.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: pacoblaze_instruction_memory
+Info (12128): Elaborating entity "pacoblaze_instruction_memory" for hierarchy "picoblaze_template:picoblaze_template_inst|pacoblaze_instruction_memory:pacoblaze_instruction_memory_inst"
+Warning (10230): Verilog HDL assignment warning at pacoblaze_instruction_memory.v(14): truncated value with size 20 to match size of target (18)
+Warning (12125): Using design file sevensegmentdisplaydecoder.v, which is not specified as a design file for the current project, but contains definitions for 1 design units and 1 entities in project
+    Info (12023): Found entity 1: SevenSegmentDisplayDecoder
+Info (12128): Elaborating entity "SevenSegmentDisplayDecoder" for hierarchy "SevenSegmentDisplayDecoder:sevenseg0"
+Warning (12241): 1 hierarchies have connectivity warnings - see the Connectivity Checks report folder
+Warning (13039): The following bidir pins have no drivers
+    Warning (13040): Bidir "AUD_ADCLRCK" has no driver
+    Warning (13040): Bidir "AUD_BCLK" has no driver
+    Warning (13040): Bidir "AUD_DACLRCK" has no driver
+    Warning (13040): Bidir "FPGA_I2C_SDAT" has no driver
+    Warning (13040): Bidir "PS2_CLK" has no driver
+    Warning (13040): Bidir "PS2_DAT" has no driver
+    Warning (13040): Bidir "GPIO_0[0]" has no driver
+    Warning (13040): Bidir "GPIO_0[1]" has no driver
+    Warning (13040): Bidir "GPIO_0[2]" has no driver
+    Warning (13040): Bidir "GPIO_0[3]" has no driver
+    Warning (13040): Bidir "GPIO_0[4]" has no driver
+    Warning (13040): Bidir "GPIO_0[5]" has no driver
+    Warning (13040): Bidir "GPIO_0[6]" has no driver
+    Warning (13040): Bidir "GPIO_0[7]" has no driver
+    Warning (13040): Bidir "GPIO_0[8]" has no driver
+    Warning (13040): Bidir "GPIO_0[9]" has no driver
+    Warning (13040): Bidir "GPIO_0[10]" has no driver
+    Warning (13040): Bidir "GPIO_0[11]" has no driver
+    Warning (13040): Bidir "GPIO_0[12]" has no driver
+    Warning (13040): Bidir "GPIO_0[13]" has no driver
+    Warning (13040): Bidir "GPIO_0[14]" has no driver
+    Warning (13040): Bidir "GPIO_0[15]" has no driver
+    Warning (13040): Bidir "GPIO_0[16]" has no driver
+    Warning (13040): Bidir "GPIO_0[17]" has no driver
+    Warning (13040): Bidir "GPIO_0[18]" has no driver
+    Warning (13040): Bidir "GPIO_0[19]" has no driver
+    Warning (13040): Bidir "GPIO_0[20]" has no driver
+    Warning (13040): Bidir "GPIO_0[21]" has no driver
+    Warning (13040): Bidir "GPIO_0[22]" has no driver
+    Warning (13040): Bidir "GPIO_0[23]" has no driver
+    Warning (13040): Bidir "GPIO_0[24]" has no driver
+    Warning (13040): Bidir "GPIO_0[25]" has no driver
+    Warning (13040): Bidir "GPIO_0[26]" has no driver
+    Warning (13040): Bidir "GPIO_0[27]" has no driver
+    Warning (13040): Bidir "GPIO_0[28]" has no driver
+    Warning (13040): Bidir "GPIO_0[29]" has no driver
+    Warning (13040): Bidir "GPIO_0[30]" has no driver
+    Warning (13040): Bidir "GPIO_0[31]" has no driver
+    Warning (13040): Bidir "GPIO_0[32]" has no driver
+    Warning (13040): Bidir "GPIO_0[33]" has no driver
+    Warning (13040): Bidir "GPIO_0[34]" has no driver
+    Warning (13040): Bidir "GPIO_0[35]" has no driver
+    Warning (13040): Bidir "GPIO_1[0]" has no driver
+    Warning (13040): Bidir "GPIO_1[1]" has no driver
+    Warning (13040): Bidir "GPIO_1[2]" has no driver
+    Warning (13040): Bidir "GPIO_1[3]" has no driver
+    Warning (13040): Bidir "GPIO_1[4]" has no driver
+    Warning (13040): Bidir "GPIO_1[5]" has no driver
+    Warning (13040): Bidir "GPIO_1[6]" has no driver
+    Warning (13040): Bidir "GPIO_1[7]" has no driver
+    Warning (13040): Bidir "GPIO_1[8]" has no driver
+    Warning (13040): Bidir "GPIO_1[9]" has no driver
+    Warning (13040): Bidir "GPIO_1[10]" has no driver
+    Warning (13040): Bidir "GPIO_1[11]" has no driver
+    Warning (13040): Bidir "GPIO_1[12]" has no driver
+    Warning (13040): Bidir "GPIO_1[13]" has no driver
+    Warning (13040): Bidir "GPIO_1[14]" has no driver
+    Warning (13040): Bidir "GPIO_1[15]" has no driver
+    Warning (13040): Bidir "GPIO_1[16]" has no driver
+    Warning (13040): Bidir "GPIO_1[17]" has no driver
+    Warning (13040): Bidir "GPIO_1[18]" has no driver
+    Warning (13040): Bidir "GPIO_1[19]" has no driver
+    Warning (13040): Bidir "GPIO_1[20]" has no driver
+    Warning (13040): Bidir "GPIO_1[21]" has no driver
+    Warning (13040): Bidir "GPIO_1[22]" has no driver
+    Warning (13040): Bidir "GPIO_1[23]" has no driver
+    Warning (13040): Bidir "GPIO_1[24]" has no driver
+    Warning (13040): Bidir "GPIO_1[25]" has no driver
+    Warning (13040): Bidir "GPIO_1[26]" has no driver
+    Warning (13040): Bidir "GPIO_1[27]" has no driver
+    Warning (13040): Bidir "GPIO_1[28]" has no driver
+    Warning (13040): Bidir "GPIO_1[29]" has no driver
+    Warning (13040): Bidir "GPIO_1[30]" has no driver
+    Warning (13040): Bidir "GPIO_1[31]" has no driver
+    Warning (13040): Bidir "GPIO_1[32]" has no driver
+    Warning (13040): Bidir "GPIO_1[33]" has no driver
+    Warning (13040): Bidir "GPIO_1[34]" has no driver
+    Warning (13040): Bidir "GPIO_1[35]" has no driver
+Warning (13024): Output pins are stuck at VCC or GND
+    Warning (13410): Pin "LEDR[0]" is stuck at GND
+    Warning (13410): Pin "LEDR[1]" is stuck at GND
+    Warning (13410): Pin "AUD_DACDAT" is stuck at GND
+    Warning (13410): Pin "AUD_XCK" is stuck at GND
+    Warning (13410): Pin "FPGA_I2C_SCLK" is stuck at GND
+Info (286030): Timing-Driven Synthesis is running
+Info (144001): Generated suppressed messages file C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/Picoblaze_Practice.map.smsg
+Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
+    Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
+Warning (21074): Design contains 11 input pin(s) that do not drive logic
+    Warning (15610): No output dependent on input pin "KEY[0]"
+    Warning (15610): No output dependent on input pin "KEY[1]"
+    Warning (15610): No output dependent on input pin "KEY[2]"
+    Warning (15610): No output dependent on input pin "KEY[3]"
+    Warning (15610): No output dependent on input pin "SW[4]"
+    Warning (15610): No output dependent on input pin "SW[5]"
+    Warning (15610): No output dependent on input pin "SW[6]"
+    Warning (15610): No output dependent on input pin "SW[7]"
+    Warning (15610): No output dependent on input pin "SW[8]"
+    Warning (15610): No output dependent on input pin "SW[9]"
+    Warning (15610): No output dependent on input pin "AUD_ADCDAT"
+Info (21057): Implemented 1975 device resources after synthesis - the final resource count might be different
+    Info (21058): Implemented 16 input pins
+    Info (21059): Implemented 55 output pins
+    Info (21060): Implemented 78 bidirectional pins
+    Info (21061): Implemented 1826 logic cells
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 121 warnings
+    Info: Peak virtual memory: 4878 megabytes
+    Info: Processing ended: Fri Feb 26 00:43:57 2021
+    Info: Elapsed time: 00:00:12
+    Info: Total CPU time (on all processors): 00:00:22
+
+
++------------------------------------------+
+; Analysis & Synthesis Suppressed Messages ;
++------------------------------------------+
+The suppressed messages can be found in C:/Users/jinil/OneDrive - The University Of British Columbia/ELEC/3rd Year/CPEN 311/in class/picoblaze/template_de1_soc/template_de1_soc/Picoblaze_Practice.map.smsg.
+
+

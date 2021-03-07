@@ -1,0 +1,4 @@
+Warning (10273): Verilog HDL warning at picoblaze_template.v(131): extended using "x" or "z"
+Warning (10268): Verilog HDL information at flip.sv(4): always construct contains both blocking and non-blocking assignments
+Warning (10273): Verilog HDL warning at new_flash_fsm.sv(63): extended using "x" or "z"
+Warning (10268): Verilog HDL information at clock_divider.sv(8): always construct contains both blocking and non-blocking assignments

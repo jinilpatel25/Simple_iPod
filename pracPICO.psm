@@ -1,0 +1,389 @@
+                    ; KCPSM3 Program - Practice Picoblaze on Spartan-3A Starter Kit.
+                    ;
+                    ;
+                    ;
+                    ;
+                    ; The 8 LEDs provide a simple 'heart beat' counter driven by interrupts generated at
+                    ; one second intervals.
+                    ;
+                    ;
+                    ;**************************************************************************************
+                    ; Port definitions
+                    ;**************************************************************************************
+                    ;
+                    ;
+                    ;
+                    CONSTANT LED_port, 80               ;8 simple LEDs. Is an OUTPUT port.
+			        CONSTANT DATA_IN_PORT, 00	        ;input data port. this is an INPUT port.
+                    CONSTANT SSEG_PORT0, 40
+					CONSTANT SSEG_PORT1, 20
+					CONSTANT SSEG_PORT2, 10
+                 
+                
+                    ;**************************************************************************************
+                    ; Special Register usage
+                    ;**************************************************************************************
+                    ;
+                    ; No registers are given special names in this program.
+                    ;
+                    ;**************************************************************************************
+                    ; Scratch Pad Memory Locations
+                    ;**************************************************************************************
+                    ;
+                    ;
+                    CONSTANT ISR_preserve_s0, 00        ;Preserve s0 contents during ISR
+                    CONSTANT ISR_preserve_s1, 01        ;Preserve s1 contents during ISR
+                    CONSTANT ISR_preserve_s2, 02        ;Preserve s2 contents during ISR
+                    CONSTANT ISR_preserve_s3, 03        ;Preserve s3 contents during ISR
+                    CONSTANT ISR_preserve_s4, 04        ;Preserve s0 contents during ISR
+                    CONSTANT ISR_preserve_s5, 05        ;Preserve s0 contents during ISR
+                    CONSTANT ISR_preserve_s6, 06        ;Preserve s0 contents during ISR
+                    CONSTANT ISR_preserve_s7, 07        ;Preserve s0 contents during ISR
+                    CONSTANT ISR_preserve_s8, 08        ;Preserve s0 contents during ISR
+                    CONSTANT ISR_preserve_s9, 09        ;Preserve s0 contents during ISR
+                    CONSTANT ISR_preserve_sA, 0A        ;Preserve s0 contents during ISR
+                    CONSTANT ISR_preserve_sB, 0B        ;Preserve s0 contents during ISR
+                    CONSTANT ISR_preserve_sC, 0C        ;Preserve s0 contents during ISR
+                
+
+                    ;
+                    CONSTANT LED_pattern, 0D            ;remember state of LEDs (8-bit counter in this case)
+                    CONSTANT COUNTER_VALUE, 0E          ;store counter value 
+                    CONSTANT SUM_DATA, 0F               ;store SUM 
+                    CONSTANT CARRY_SUM, 10              ;store CARRY SUM
+                    
+                    CONSTANT STORE_SA, 11               
+                    CONSTANT STORE_SB,12
+                    CONSTANT STORE_SC, 13
+                   
+                    ;
+                    ;**************************************************************************************
+                    ; Useful data constants
+                    ;**************************************************************************************
+                    ;
+                    ;
+                    ; Constant to define a software delay of 1us. This must be adjusted to reflect the
+                    ; clock applied to KCPSM3. Every instruction executes in 2 clock cycles making the
+                    ; calculation highly predictable. The '6' in the following equation even allows for
+                    ; 'CALL delay_1us' instruction in the initiating code.
+                    ;
+                    ; delay_1us_constant =  (clock_rate - 6)/4       Where 'clock_rate' is in MHz
+                    ;
+                    ; Example: For a 50MHz clock the constant value is (50-6)/4 = 11  (0B Hex).
+                    ; For clock rates below 10MHz the value of 1 must be used and the operation will
+                    ; become lower than intended. Interrupts may effect the timing of software based
+                    ; delays.
+                    ;
+                    CONSTANT delay_1us_constant, 0B
+                    ;
+                    ;
+                    ;
+                    ; ASCII table
+                    ;
+                    CONSTANT character_a, 61
+                    CONSTANT character_b, 62
+                    CONSTANT character_c, 63
+                    CONSTANT character_d, 64
+                    CONSTANT character_e, 65
+                    CONSTANT character_f, 66
+                    CONSTANT character_g, 67
+                    CONSTANT character_h, 68
+                    CONSTANT character_i, 69
+                    CONSTANT character_j, 6A
+                    CONSTANT character_k, 6B
+                    CONSTANT character_l, 6C
+                    CONSTANT character_m, 6D
+                    CONSTANT character_n, 6E
+                    CONSTANT character_o, 6F
+                    CONSTANT character_p, 70
+                    CONSTANT character_q, 71
+                    CONSTANT character_r, 72
+                    CONSTANT character_s, 73
+                    CONSTANT character_t, 74
+                    CONSTANT character_u, 75
+                    CONSTANT character_v, 76
+                    CONSTANT character_w, 77
+                    CONSTANT character_x, 78
+                    CONSTANT character_y, 79
+                    CONSTANT character_z, 7A
+                    CONSTANT character_A, 41
+                    CONSTANT character_B, 42
+                    CONSTANT character_C, 43
+                    CONSTANT character_D, 44
+                    CONSTANT character_E, 45
+                    CONSTANT character_F, 46
+                    CONSTANT character_G, 47
+                    CONSTANT character_H, 48
+                    CONSTANT character_I, 49
+                    CONSTANT character_J, 4A
+                    CONSTANT character_K, 4B
+                    CONSTANT character_L, 4C
+                    CONSTANT character_M, 4D
+                    CONSTANT character_N, 4E
+                    CONSTANT character_O, 4F
+                    CONSTANT character_P, 50
+                    CONSTANT character_Q, 51
+                    CONSTANT character_R, 52
+                    CONSTANT character_S, 53
+                    CONSTANT character_T, 54
+                    CONSTANT character_U, 55
+                    CONSTANT character_V, 56
+                    CONSTANT character_W, 57
+                    CONSTANT character_X, 58
+                    CONSTANT character_Y, 59
+                    CONSTANT character_Z, 5A
+                    CONSTANT character_0, 30
+                    CONSTANT character_1, 31
+                    CONSTANT character_2, 32
+                    CONSTANT character_3, 33
+                    CONSTANT character_4, 34
+                    CONSTANT character_5, 35
+                    CONSTANT character_6, 36
+                    CONSTANT character_7, 37
+                    CONSTANT character_8, 38
+                    CONSTANT character_9, 39
+                    CONSTANT character_colon, 3A
+                    CONSTANT character_stop, 2E
+                    CONSTANT character_semi_colon, 3B
+                    CONSTANT character_minus, 2D
+                    CONSTANT character_divide, 2F       ;'/'
+                    CONSTANT character_plus, 2B
+                    CONSTANT character_comma, 2C
+                    CONSTANT character_less_than, 3C
+                    CONSTANT character_greater_than, 3E
+                    CONSTANT character_equals, 3D
+                    CONSTANT character_space, 20
+                    CONSTANT character_CR, 0D           ;carriage return
+                    CONSTANT character_question, 3F     ;'?'
+                    CONSTANT character_dollar, 24
+                    CONSTANT character_exclaim, 21      ;'!'
+                    CONSTANT character_BS, 08           ;Back Space command character
+                    ;
+                    ;
+                    ;
+                    ;
+                    ;
+                    ;**************************************************************************************
+                    ; Initialise the system
+                    ;**************************************************************************************
+                    ;
+        cold_start: LOAD s0, 01                         ;clear 1 second counter and clear LEDs
+                    LOAD s5, 00    ; LED0 output
+                    LOAD s7, 00    ;second register
+                    LOAD s8, 01    ; counter
+                    LOAD s9, 00    ; store sum of sample
+                    LOAD sA, 00    ; check how many times you shifted left to get MSB
+                    LOAD sB, 80    ; LED pattern for output
+                    LOAD sC, 08    ; to generate LED pattern
+                    
+                    STORE s0, LED_pattern ; store the values at corresponding location
+                    STORE s7, CARRY_SUM
+                    STORE s8, COUNTER_VALUE
+                    STORE s9, SUM_DATA 
+                    STORE sA, STORE_SA
+                    STORE sB, STORE_SB
+                    STORE sC, STORE_SC
+                    ;
+                    ENABLE INTERRUPT                    ;enable one second heart beat
+              
+            	
+					
+
+					;**************************************************************************************
+                    ; Main program
+                    ;**************************************************************************************
+                    ;
+                    ; Display welcome message for design
+                    ;
+					
+      main_program: CALL delay_1s;
+
+      change_state: XOR s5, FF ; complement the current state of LED0
+      
+      output_led0: OUTPUT s5, SSEG_PORT2 ; output new LED0 state
+                   JUMP main_program            
+    			         		                                     
+                 
+                    ;**************************************************************************************
+                    ; Software delay routines
+                    ;**************************************************************************************
+                    ;
+                    ; Delay of 1us.
+                    ;
+                    ; Constant value 'delay_1us_constant' reflects the clock applied to KCPSM3. Every
+                    ; instruction executes in 2 clock cycles making the calculation highly predictable.
+                    ; The '6' in the following equation allows for the 'CALL delay_1us' instruction used
+                    ; in the initiating code. Interrupts may effect software derived delays.
+                    ;
+                    ; delay_1us_constant =  (clock_rate - 6)/4       Where 'clock_rate' is in MHz
+                    ;
+                    ; Registers used s0
+                    ;
+         delay_1us: LOAD s0, delay_1us_constant
+          wait_1us: SUB s0, 01
+                    JUMP NZ, wait_1us
+                    RETURN
+                    ;
+                    ; Delay of 40us.
+                    ;
+                    ; Registers used s0, s1
+                    ;
+        delay_40us: LOAD s1, 28                         ;40 x 1us = 40us
+         wait_40us: CALL delay_1us
+                    SUB s1, 01
+                    JUMP NZ, wait_40us
+                    RETURN
+                    ;
+                    ;
+                    ; Delay of 1ms.
+                    ;
+                    ; Registers used s0, s1, s2
+                    ;
+         delay_1ms: LOAD s2, 19                         ;25 x 40us = 1ms
+          wait_1ms: CALL delay_40us
+                    SUB s2, 01
+                    JUMP NZ, wait_1ms
+                    RETURN
+                    ;
+                    ; Delay of 20ms.
+                    ;
+                    ; Delay of 20ms used during initialisation.
+                    ;
+                    ; Registers used s0, s1, s2, s3
+                    ;
+        delay_20ms: LOAD s3, 14                         ;20 x 1ms = 20ms
+         wait_20ms: CALL delay_1ms
+                    SUB s3, 01
+                    JUMP NZ, wait_20ms
+                    RETURN
+					
+		delay_100ms: LOAD s3, 64                         ;100 x 1ms = 20ms
+         wait_100ms: CALL delay_1ms
+                     SUB s3, 01
+                     JUMP NZ, wait_100ms
+                     RETURN		
+					 
+				
+					
+                    ;
+                    ; Delay of approximately 1 second.
+                    ;
+                    ; Registers used s0, s1, s2, s3, s4
+                    ;
+        
+        delay_200ms: LOAD s4, 02
+        wait_200ms: CALL delay_100ms
+                    SUB s4, 01
+                    JUMP NZ, wait_200ms
+                    RETURN 
+
+          delay_1s: LOAD s4, 32                         ;50 x 20ms = 1000ms
+           wait_1s: CALL delay_20ms
+                    SUB s4, 01
+                    JUMP NZ, wait_1s
+                    RETURN
+
+                    ;
+                    ;
+                    ;
+                    ;**************************************************************************************
+                    ; Interrupt Service Routine (ISR)
+                    ;**************************************************************************************
+                    ;
+                    ; The interrupt is used purely to provide a 1 second heart beat binary counter pattern
+                    ; on the 8 LEDs.
+                    ;
+               ISR: STORE s0,ISR_preserve_s0 
+                    STORE s1,ISR_preserve_s1        ;Preserve s1 contents during ISR
+                    STORE s2,ISR_preserve_s2        ;Preserve s2 contents during ISR
+                    STORE s3,ISR_preserve_s3        ;Preserve s3 contents during ISR
+                    STORE s4,ISR_preserve_s4        ;Preserve s4 contents during ISR
+                    STORE s5,ISR_preserve_s5        ;Preserve s5 contents during ISR
+                    STORE s6,ISR_preserve_s6        ;Preserve s6 contents during ISR
+                    STORE s7,ISR_preserve_s7        ;Preserve s7 contents during ISR
+                    STORE s8,ISR_preserve_s8        ;Preserve s8 contents during ISR
+                    STORE s9,ISR_preserve_s9        ;Preserve s9 contents during ISR
+                    STORE sA,ISR_preserve_sA        ;Preserve sA contents during ISR
+                    STORE sB,ISR_preserve_sB        ;Preserve sB contents during ISR
+                    STORE sC,ISR_preserve_sC        ;Preserve sC contents during ISR
+
+                    INPUT s0,DATA_IN_PORT     ;get audio data      
+                    FETCH sA,STORE_SA ; register for checking MSB that is 1
+                    FETCH sB,STORE_SB ; register for makingf matter of led 
+                    FETCH sC,STORE_SC ; register to compare to sA value
+                    FETCH s7, CARRY_SUM ; get previous value of carry sum
+                    FETCH s8, COUNTER_VALUE ;get previous value of counter
+                    FETCH s9, SUM_DATA ; get previous value of sum of audio data
+
+                    
+                    
+  
+                     
+   check_data_signed: TEST s0,80          ;if MSB = 1 jump to is_neg
+                      JUMP NZ, is_neg     
+   
+          add_sample: ADDCY s9,s0         ; add incoming audio data to sample 
+                      JUMP C, add_to_next_register ;if adding results in overflow go to add_to_next_register
+                      JUMP increment_counter ; increment counter
+
+add_to_next_register: ADD s7,01 ;add 01 
+
+   increment_counter: ADDCY s8,01                   ; Count till 256
+                      JUMP C, check_msb_1           ; if overflow then go to check which MSB is 1 
+                      JUMP SAVE_REGISTERS           ; else save the registers value
+          
+            is_neg: XOR s0, FF    ; take 2's complement
+                    ADD s0, 01
+                    JUMP add_sample
+    
+    check_msb_1: ADD sA, 01 ;check how many times you need to shift left to get carry flag = 1
+                 SL0 s7
+                 JUMP C, make_pattern ;if carry bit is 1 go to make_pattern
+                 JUMP check_msb_1 ;else keep shifting left
+
+   make_pattern: COMPARE sC, sA  ;compare sC with number #MSB with 1
+                 JUMP Z, output_led
+                 SR1 sB ; Shift right 1 1000_0000 
+                 SUB sC, 01 ; subtract 1 from 8
+                 JUMP make_pattern ; repeat until sC == #MSB with 1
+
+    output_led: OUTPUT sB, LED_port ; output the pattern
+                LOAD s8, 01 ;reset registers for next data
+                LOAD s9, 00  
+                LOAD sA, 00 
+                LOAD sB, 80 
+                LOAD sC, 08 
+                LOAD s7, 00
+
+
+    SAVE_REGISTERS: STORE s8, COUNTER_VALUE ;store values of isr
+                    STORE s9, SUM_DATA 
+                    STORE s7, CARRY_SUM
+                    STORE sA, STORE_SA
+                    STORE sB, STORE_SB
+                    STORE sC, STORE_SC
+                    FETCH s0,ISR_preserve_s0       ; Restore values of register prior to interrupt
+                    FETCH s1,ISR_preserve_s1        
+                    FETCH s2,ISR_preserve_s2        
+                    FETCH s3,ISR_preserve_s3        
+                    FETCH s4,ISR_preserve_s4        
+                    FETCH s5,ISR_preserve_s5        
+                    FETCH s6,ISR_preserve_s6        
+                    FETCH s7,ISR_preserve_s7        
+                    FETCH s8,ISR_preserve_s8        
+                    FETCH s9,ISR_preserve_s9        
+                    FETCH sA,ISR_preserve_sA        
+                    FETCH sB,ISR_preserve_sB        
+                    FETCH sC,ISR_preserve_sC        
+                    RETURNI ENABLE  
+
+                    ;
+                    ;
+                    ;**************************************************************************************
+                    ; Interrupt Vector
+                    ;**************************************************************************************
+                    ;
+                    ADDRESS 3FF
+                    JUMP ISR
+                    ;
+                    ;

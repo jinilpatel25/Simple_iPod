@@ -1,0 +1,25 @@
+------------------------------------------------------------
+TimeQuest Timing Analyzer Summary
+------------------------------------------------------------
+
+Type  : Setup 'CLOCK_50'
+Slack : 11.173
+TNS   : 0.000
+
+Type  : Hold 'CLOCK_50'
+Slack : 0.245
+TNS   : 0.000
+
+Type  : Recovery 'CLOCK_50'
+Slack : 18.925
+TNS   : 0.000
+
+Type  : Removal 'CLOCK_50'
+Slack : 0.569
+TNS   : 0.000
+
+Type  : Minimum Pulse Width 'CLOCK_50'
+Slack : 9.227
+TNS   : 0.000
+
+------------------------------------------------------------
